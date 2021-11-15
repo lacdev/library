@@ -5,13 +5,13 @@ function Book(name, author, pages, read) {
   this.author = author
   this.pages = pages
   this.read = read
-  this.info = function () {
-    if (read === true) {
-      read = 'Read book'
-    } else {
-      read = 'Not read yet'
-    }
-    return `${name} by ${author}, ${pages} pages, ${read}`
+}
+
+Book.prototype.info = function () {
+  if (this.read === true) {
+    return `${this.name} by ${this.author}, ${this.pages} pages, I read the book already`
+  } else {
+    return `${this.name} by ${this.author}, ${this.pages} pages, I haven't read the book.`
   }
 }
 
