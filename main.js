@@ -1,6 +1,7 @@
 console.log('Library Project')
 
-function Book(name, author, pages, read) {
+const myLibrary = []
+const Book = function (name, author, pages, read) {
   this.name = name
   this.author = author
   this.pages = pages
@@ -8,17 +9,11 @@ function Book(name, author, pages, read) {
 }
 
 Book.prototype.info = function () {
-  if (this.read === true) {
+  if (this.read) {
     return `${this.name} by ${this.author}, ${this.pages} pages, I read the book already`
   } else {
     return `${this.name} by ${this.author}, ${this.pages} pages, I haven't read the book.`
   }
 }
 
-const book1 = new Book('Algorithms to Live By', 'Brian Christian', 368, true)
-
-console.log(book1)
-
-const book2 = new Book('Clean Code', 'Robert C. Martin', 464, false)
-
-console.log(book2)
+const book1 = Object.create(Book)

@@ -1,5 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre&family=Ubuntu&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  color: #eeeeee;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.wrapper {
+  max-width: 1400px;
+  background-color: rgb(255, 255, 255);
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.main {
+  min-height: 91vh;
+  margin-top: 8px;
+}
+
+.add-book-container {
+  padding: 16px;
+}
+
+.add-button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700px;
+  background-color: blueviolet;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.books-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.card {
+  padding: 16px;
+  outline: 1px solid black;
+  margin: 16px;
+  color: black;
+  display: flex;
+}
+
+.book-info-container {
+  display: flex;
+  flex-flow: column nowrap;
+  padding-left: 16px;
+  justify-content: space-around;
+}
+
+.book-img-container {
+  max-width: 200px;
+}
+
+.book-image {
+  max-width: 100%;
+}
+
+.footer {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #181818e8;
+  color: #eeeeee;
+  padding: 32px;
 }
