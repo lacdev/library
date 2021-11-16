@@ -84,6 +84,11 @@ const createBookCard = function (book) {
   const deleteButton = document.createElement('button')
   deleteButton.classList.add('delete-button')
   deleteButton.textContent = 'Delete Book'
+  deleteButton.addEventListener('click', (event) => {
+    const cardElement = event.target.closest('.card')
+    const bookID = cardElement.dataset.id
+    deleteFromLibrary(myLibrary, bookID)
+  })
   infoContainer.appendChild(deleteButton)
   card.appendChild(infoContainer)
 
@@ -114,3 +119,12 @@ form.addEventListener('submit', (event) => {
   bookPages.value = ''
   bookImage.value = ''
 })
+
+const deleteFromLibrary = function (array, id) {
+  index = array.findIndex((book) => book.id === id)
+  if (index > -1) {
+    array.splice(index, 1)
+    cleanBooksContainer()
+    renderBooks(myLibrary)
+  }
+}
