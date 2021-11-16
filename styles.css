@@ -30,19 +30,38 @@ body {
 }
 
 .main {
-  /* min-height: 91vh; */
   margin-top: 8px;
   padding: 16px;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .add-book-container {
   padding: 16px;
   color: #0c0c0c;
+  width: 205px;
+  height: min-content;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .new-book-form {
   display: flex;
   flex-flow: column wrap;
+}
+
+label {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+input {
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  margin: 16px 0;
+  padding: 8px 8px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .add-button {
@@ -67,10 +86,13 @@ body {
 }
 
 .books-container {
+  /* outline: 1px solid red; */
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-content: flex-start;
+  width: 960px;
+  height: min-content;
 }
 
 .card {
