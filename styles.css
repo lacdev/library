@@ -39,10 +39,13 @@ body {
 .add-book-container {
   padding: 16px;
   color: #0c0c0c;
-  width: 205px;
+  /* width: 205px; */
+  width: 100%;
   height: min-content;
   border-radius: 8px;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .new-book-form {
@@ -145,12 +148,6 @@ input {
 .not-read {
   background-color: rgb(233, 80, 131);
   color: rgb(238, 238, 238);
-}
-
-.read:hover,
-.not-read:hover {
-  background-color: white;
-  color: black;
 }
 
 .delete-button {

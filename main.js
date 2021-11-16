@@ -22,10 +22,6 @@ Book.prototype.generateID = function () {
     Date.now().toString(36) + Math.random().toString(36).substr(2))
 }
 
-Book.prototype.toggleReadStatus = function () {
-  this.read = !this.read
-}
-
 const buildBook = function () {
   name = bookTitle.value
   author = bookAuthor.value
@@ -73,25 +69,20 @@ const createBookCard = function (book) {
   bookPages.textContent = `${pages} pages`
   infoContainer.appendChild(bookPages)
 
-  // const readStatus = document.createElement('p')
-  // readStatus.classList.add('read-status')
-  // readStatus.textContent = read
-  // infoContainer.appendChild(readStatus)
-
   const readButton = document.createElement('button')
   readButton.classList.add('read-button')
-  if (read) {
-    readButton.classList.add('read')
-    readButton.textContent = 'Book finished'
-  } else {
+  if (read === false) {
+    readButton.textContent = 'Not Read'
     readButton.classList.add('not-read')
-    readButton.textContent = 'Book unfinished'
+  } else {
+    readButton.textContent = 'Read'
+    readButton.classList.add('read')
   }
-  readButton.addEventListener('click', (event) => {
-    book.toggleReadStatus()
-    // const cardElement = event.target.closest('.card')
-    // const bookID = cardElement.dataset.id
-    // checkForReadStatus(myLibrary, bookID)
+
+  readButton.addEventListener('click', () => {
+    book.read = !book.read
+    cleanBooksContainer()
+    renderBooks(myLibrary)
   })
 
   infoContainer.appendChild(readButton)
@@ -122,20 +113,6 @@ const renderBooks = function (array) {
     createBookCard(book)
   })
 }
-
-// const checkForReadStatus = function (array, id) {
-//   const index = array.findIndex((book) => book.id === id)
-
-//   // if (index.read) {
-//   //   !index.read
-//   // }
-
-//   index.toggleReadStatus()
-//   // book.toggleReadStatus()
-//   // cleanBooksContainer()
-//   // renderBooks(myLibrary)
-//   console.log(index.read)
-// }
 
 const deleteFromLibrary = function (array, id) {
   const index = array.findIndex((book) => book.id === id)
