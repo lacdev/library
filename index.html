@@ -10,64 +10,56 @@
   </head>
   <body>
     <div class="wrapper">
-      <header class="header">
-        <h2>Library Project</h2>
-      </header>
-      <main class="main">
-        <div class="add-book-container">
-          <button class="add-button" id="add-button">Add new book</button>
-        </div>
-        <div class="books-container">
-          <div class="card">
-              <div class="book-img-container">
-                <img src="https://images-na.ssl-images-amazon.com/images/I/41yy6wxnEuL._SY344_BO1,204,203,200_QL70_ML2_.jpg" alt="book-image" class="book-image">
-              </div>
-              <div class="book-info-container">
-                <h2 class="book-title">Algorithms to Live By</h2>
-                <h4 class="book-author">Test Author</h4>
-                <h6 class="book-pages">474 pages</h6>
-                <p class="read-status">Not read yet</p>
-              </div>
-          </div>
-          <div class="card">
-            <div class="book-img-container">
-              <img src="https://images-na.ssl-images-amazon.com/images/I/41yy6wxnEuL._SY344_BO1,204,203,200_QL70_ML2_.jpg" alt="book-image" class="book-image">
+
+
+        <header class="header">
+            <h2>Library Project</h2>
+        </header>
+        
+        <main class="main">
+            <div class="add-book-container">
+
+                  <form id="new-book-form">
+
+                    <label for="book-title" id="title-label">Book Title</label>
+                    <input type="text" id="book-title" placeholder="Book Title goes here" required> 
+                    <label for="book-author" id="author-label">Author Name</label>
+                    <input type="text" id="book-author" placeholder="Author Name goes here" required>
+                    <label for="book-pages" id="book-pages-label">Book Pages</label>
+                    <input type="number" id="book-pages" placeholder="0" min="1" max="9999" required>
+                    <label for="book-image" id="book-image-label">Book Image</label>
+                    <input type="url" id="book-image" placeholder="https://www.example.com" required>
+                    <button type="submit" class="add-button"  id="add-button">Add Book</button>
+
+                </form>
+
             </div>
-            <div class="book-info-container">
-              <h2 class="book-title">Algorithms to Live By</h2>
-              <h4 class="book-author">Test Author</h4>
-              <h6 class="book-pages">474 pages</h6>
-              <p class="read-status">Not read yet</p>
+
+
+            <div class="books-container">
+
+            <div class="card">
+               
+                      <div class="book-img-container">
+                        <img src="https://images-na.ssl-images-amazon.com/images/I/4140Bl0+HjL._SY344_BO1,204,203,200_.jpg" alt="book-image" class="book-image">
+                      </div>
+                      <div class="book-info-container">
+                        <h2 class="book-title">Meditations</h2>
+                        <h3 class="book-author">Marcus Aurelius</h3>
+                        <h4 class="book-pages">256 pages</h4>
+                        <p class="read-status">Not read yet</p>
+                        <button class="read-button">Read Status</button>
+                        <button class="delete-button">Delete Book</button>
+                      </div>
+                  </div>
+            
             </div>
-        </div>
-        <div class="card">
-          <div class="book-img-container">
-            <img src="https://images-na.ssl-images-amazon.com/images/I/41yy6wxnEuL._SY344_BO1,204,203,200_QL70_ML2_.jpg" alt="book-image" class="book-image">
-          </div>
-          <div class="book-info-container">
-            <h2 class="book-title">Algorithms to Live By</h2>
-            <h4 class="book-author">Test Author</h4>
-            <h6 class="book-pages">474 pages</h6>
-            <p class="read-status">Not read yet</p>
-          </div>
-      </div>
-      <div class="card">
-        <div class="book-img-container">
-          <img src="https://images-na.ssl-images-amazon.com/images/I/41yy6wxnEuL._SY344_BO1,204,203,200_QL70_ML2_.jpg" alt="book-image" class="book-image">
-        </div>
-        <div class="book-info-container">
-          <h2 class="book-title">Algorithms to Live By</h2>
-          <h4 class="book-author">Test Author</h4>
-          <h6 class="book-pages">474 pages</h6>
-          <p class="read-status">Not read yet</p>
-        </div>
-    </div>
-          
-        </div>
-      </main>
-      <footer>
-        <footer class="footer">Created with &#128150 for The Odin Project</footer>
-      </footer>
+        </main>
+
+        <footer>
+            <footer class="footer">Created with &#128150 for The Odin Project</footer>
+        </footer>
+
     </div>
   </body>
 </html>
