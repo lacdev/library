@@ -92,7 +92,7 @@ input {
   flex-flow: row wrap;
   justify-content: flex-start;
   align-content: flex-start;
-  min-width: 960px;
+  max-width: 1260px;
   height: min-content;
 }
 
@@ -102,7 +102,7 @@ input {
   color: black;
   display: flex;
   border-radius: 8px;
-  width: 400px;
+  width: 350px;
   min-height: 280px;
   box-shadow: 2px 2px 8px hsl(0deg 0% 0% / 47%);
   display: flex;
@@ -112,6 +112,7 @@ input {
   display: flex;
   flex-flow: column;
   padding-left: 16px;
+  flex: 0 1 0;
 }
 
 .book-img-container {
@@ -131,13 +132,13 @@ input {
 
 .book-title {
   font-weight: 700;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   margin-bottom: 8px;
 }
 
 .book-author {
   font-weight: 400;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: rgb(71, 71, 71);
   margin-bottom: 8px;
 }
