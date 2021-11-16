@@ -1,5 +1,3 @@
-console.log('Library Project')
-
 const form = document.querySelector('#new-book-form')
 const bookTitle = document.querySelector('#book-title')
 const bookAuthor = document.querySelector('#book-author')
@@ -8,6 +6,7 @@ const bookImage = document.querySelector('#book-image')
 const booksContainer = document.querySelector('#books-container')
 
 let myLibrary = []
+
 const Book = function (name, author, pages, image, read) {
   this.name = name
   this.author = author
@@ -81,8 +80,8 @@ const createBookCard = function (book) {
 
   readButton.addEventListener('click', () => {
     book.read = !book.read
-    saveLibraryInLocalStorage()
-    findLibraryInLocalStorage()
+    saveInLocalStorage()
+    findInLocalStorage()
     cleanBooksContainer()
     renderBooks(myLibrary)
   })
@@ -114,28 +113,28 @@ const deleteFromLibrary = function (array, id) {
   const index = array.findIndex((book) => book.id === id)
   if (index > -1) {
     array.splice(index, 1)
-    saveLibraryInLocalStorage()
-    findLibraryInLocalStorage()
+    saveInLocalStorage()
+    findInLocalStorage()
     cleanBooksContainer()
     renderBooks(myLibrary)
   }
 }
 
-const saveLibraryInLocalStorage = function () {
+const saveInLocalStorage = function () {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
 }
 
-const findLibraryInLocalStorage = function () {
+const findInLocalStorage = function () {
   if (!localStorage.myLibrary) {
     myLibrary = []
   } else {
-    getLibraryFromLocalStorage()
+    getFromLocalStorage()
   }
 }
 
-const getLibraryFromLocalStorage = function () {
-  const storedLibrary = localStorage.getItem('myLibrary')
-  myLibrary = JSON.parse(storedLibrary)
+const getFromLocalStorage = function () {
+  const stored = localStorage.getItem('myLibrary')
+  myLibrary = JSON.parse(stored)
 }
 
 booksContainer.addEventListener('click', (event) => {
@@ -151,14 +150,14 @@ form.addEventListener('submit', (event) => {
   const book = buildBook()
   book.generateID()
   addBookToLibrary(book)
-  saveLibraryInLocalStorage()
-  findLibraryInLocalStorage()
+  saveInLocalStorage()
+  findInLocalStorage()
   cleanBooksContainer()
   renderBooks(myLibrary)
   form.reset()
 })
 
 window.addEventListener('load', () => {
-  findLibraryInLocalStorage()
+  findInLocalStorage()
   renderBooks(myLibrary)
 })
