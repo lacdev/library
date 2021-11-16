@@ -7,8 +7,7 @@ const bookPages = document.querySelector('#book-pages')
 const bookImage = document.querySelector('#book-image')
 const booksContainer = document.querySelector('#books-container')
 
-const myLibrary = []
-
+let myLibrary = []
 const Book = function (name, author, pages, image, read) {
   this.name = name
   this.author = author
@@ -71,7 +70,8 @@ const createBookCard = function (book) {
 
   const readButton = document.createElement('button')
   readButton.classList.add('read-button')
-  if (read === false) {
+
+  if (!read) {
     readButton.textContent = 'Not Read'
     readButton.classList.add('not-read')
   } else {
@@ -81,6 +81,8 @@ const createBookCard = function (book) {
 
   readButton.addEventListener('click', () => {
     book.read = !book.read
+    saveLibraryInLocalStorage()
+    findLibraryInLocalStorage()
     cleanBooksContainer()
     renderBooks(myLibrary)
   })
@@ -90,15 +92,9 @@ const createBookCard = function (book) {
   const deleteButton = document.createElement('button')
   deleteButton.classList.add('delete-button')
   deleteButton.textContent = 'Delete Book'
-  deleteButton.addEventListener('click', (event) => {
-    const cardElement = event.target.closest('.card')
-    const bookID = cardElement.dataset.id
-    deleteFromLibrary(myLibrary, bookID)
-  })
-
   infoContainer.appendChild(deleteButton)
-  card.appendChild(infoContainer)
 
+  card.appendChild(infoContainer)
   booksContainer.appendChild(card)
 }
 
@@ -118,20 +114,51 @@ const deleteFromLibrary = function (array, id) {
   const index = array.findIndex((book) => book.id === id)
   if (index > -1) {
     array.splice(index, 1)
+    saveLibraryInLocalStorage()
+    findLibraryInLocalStorage()
     cleanBooksContainer()
     renderBooks(myLibrary)
   }
 }
+
+const saveLibraryInLocalStorage = function () {
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
+}
+
+const findLibraryInLocalStorage = function () {
+  if (!localStorage.myLibrary) {
+    myLibrary = []
+  } else {
+    getLibraryFromLocalStorage()
+  }
+}
+
+const getLibraryFromLocalStorage = function () {
+  const storedLibrary = localStorage.getItem('myLibrary')
+  myLibrary = JSON.parse(storedLibrary)
+}
+
+booksContainer.addEventListener('click', (event) => {
+  if (event.target.classList.contains('delete-button')) {
+    const cardElement = event.target.closest('.card')
+    const bookID = cardElement.dataset.id
+    deleteFromLibrary(myLibrary, bookID)
+  }
+})
 
 form.addEventListener('submit', (event) => {
   event.preventDefault()
   const book = buildBook()
   book.generateID()
   addBookToLibrary(book)
+  saveLibraryInLocalStorage()
+  findLibraryInLocalStorage()
   cleanBooksContainer()
   renderBooks(myLibrary)
-  bookTitle.value = ''
-  bookAuthor.value = ''
-  bookPages.value = ''
-  bookImage.value = ''
+  form.reset()
+})
+
+window.addEventListener('load', () => {
+  findLibraryInLocalStorage()
+  renderBooks(myLibrary)
 })
