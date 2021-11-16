@@ -22,7 +22,9 @@ Book.prototype.generateID = function () {
     Date.now().toString(36) + Math.random().toString(36).substr(2))
 }
 
-Book.prototype.toggleReadStatus = function () {}
+Book.prototype.toggleReadStatus = function () {
+  this.read = !this.read
+}
 
 const buildBook = function () {
   name = bookTitle.value
@@ -71,14 +73,27 @@ const createBookCard = function (book) {
   bookPages.textContent = `${pages} pages`
   infoContainer.appendChild(bookPages)
 
-  const readStatus = document.createElement('p')
-  readStatus.classList.add('read-status')
-  readStatus.textContent = read
-  infoContainer.appendChild(readStatus)
+  // const readStatus = document.createElement('p')
+  // readStatus.classList.add('read-status')
+  // readStatus.textContent = read
+  // infoContainer.appendChild(readStatus)
 
   const readButton = document.createElement('button')
   readButton.classList.add('read-button')
-  readButton.textContent = 'Read Status'
+  if (read) {
+    readButton.classList.add('read')
+    readButton.textContent = 'Book finished'
+  } else {
+    readButton.classList.add('not-read')
+    readButton.textContent = 'Book unfinished'
+  }
+  readButton.addEventListener('click', (event) => {
+    book.toggleReadStatus()
+    // const cardElement = event.target.closest('.card')
+    // const bookID = cardElement.dataset.id
+    // checkForReadStatus(myLibrary, bookID)
+  })
+
   infoContainer.appendChild(readButton)
 
   const deleteButton = document.createElement('button')
@@ -89,6 +104,7 @@ const createBookCard = function (book) {
     const bookID = cardElement.dataset.id
     deleteFromLibrary(myLibrary, bookID)
   })
+
   infoContainer.appendChild(deleteButton)
   card.appendChild(infoContainer)
 
@@ -107,6 +123,29 @@ const renderBooks = function (array) {
   })
 }
 
+// const checkForReadStatus = function (array, id) {
+//   const index = array.findIndex((book) => book.id === id)
+
+//   // if (index.read) {
+//   //   !index.read
+//   // }
+
+//   index.toggleReadStatus()
+//   // book.toggleReadStatus()
+//   // cleanBooksContainer()
+//   // renderBooks(myLibrary)
+//   console.log(index.read)
+// }
+
+const deleteFromLibrary = function (array, id) {
+  const index = array.findIndex((book) => book.id === id)
+  if (index > -1) {
+    array.splice(index, 1)
+    cleanBooksContainer()
+    renderBooks(myLibrary)
+  }
+}
+
 form.addEventListener('submit', (event) => {
   event.preventDefault()
   const book = buildBook()
@@ -119,12 +158,3 @@ form.addEventListener('submit', (event) => {
   bookPages.value = ''
   bookImage.value = ''
 })
-
-const deleteFromLibrary = function (array, id) {
-  index = array.findIndex((book) => book.id === id)
-  if (index > -1) {
-    array.splice(index, 1)
-    cleanBooksContainer()
-    renderBooks(myLibrary)
-  }
-}

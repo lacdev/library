@@ -86,7 +86,6 @@ input {
 }
 
 .books-container {
-  /* outline: 1px solid red; */
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -138,9 +137,20 @@ input {
   transition: 0.2s ease-in;
 }
 
-.read-button:hover {
+.read {
+  background-color: rgb(46, 170, 102);
+  color: rgb(255, 255, 255);
+}
+
+.not-read {
+  background-color: rgb(233, 80, 131);
+  color: rgb(238, 238, 238);
+}
+
+.read:hover,
+.not-read:hover {
   background-color: white;
-  color: #29acff;
+  color: black;
 }
 
 .delete-button {
